@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     // P R O P E R T I E S
-    [SerializeField] Transform Fire;
+    public Transform Fire;
     Rigidbody2D rb2D;
     Animator animator;
     Vector2 targetPosition;

@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     public float randomness = 2f;
     public int numberOfEnemies = 10;
 
+    [SerializeField] Transform fireReference;
+
     void Start()
     {
         if (spawnGround == null)
@@ -26,7 +28,12 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < numberOfEnemies; i++)
         {
             Vector3 randomPosition = GetRandomSpawnPosition();
-            Instantiate(enemyPrefab, randomPosition, Quaternion.identity, transform);
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity, transform);
+            EnemyBehavior EB = spawnedEnemy.GetComponent<EnemyBehavior>(); 
+            if (EB != null)
+            {
+                EB.Fire = fireReference;
+            }
         }
     }
 
