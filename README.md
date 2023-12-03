@@ -20,7 +20,11 @@
 - fix player animator controller (doesn't quite work right yet)
 - enemy manager for spawning in enemies
 - item manager for spawning in coal
-- start screen (buttons and instructions)
-- end of game scene (game over screen and button to restart)
+- start screen (buttons and instructions) [DONE]
+- end of game scene (game over screen and button to restart) [DONE]
   
 - implement power ups [Will be saved for later]
+
+
+### 3 December 2023 | 11:00
+- Added Start, How to Play, and Game Over screens with functioning buttons

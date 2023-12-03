@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\InteractableItem.cs" />
     <Compile Include="Assets\Scripts\EnemyBehavior.cs" />
     <Compile Include="Assets\Scripts\UIUpdater.cs" />
+    <Compile Include="Assets\Scripts\ButtonBehavior.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\StickPickup.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
