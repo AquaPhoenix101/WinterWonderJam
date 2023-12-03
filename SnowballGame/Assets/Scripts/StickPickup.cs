@@ -18,10 +18,6 @@ public class StickPickup : MonoBehaviour
 
 
     // break time
-    [SerializeField] float burnTime = 30; // in seconds
-    // stick state
-    public bool IsOnFire = false;
-    Timer burnTimer;
 
     public bool HasActiveStick;
     bool CanAttack = false;
@@ -36,27 +32,31 @@ public class StickPickup : MonoBehaviour
     private void Awake()
     {
         fireBehavior = Fire.GetComponent<FireBehavior>();
-        burnTimer = new Timer();
         animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        burnTimer.State = TimerState.Off;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleSticks();
+       
         if (Input.GetKeyDown(KeyCode.Space))
             CanAttack = true;
     }
     private void FixedUpdate()
     {
         if (CanAttack)
+        {
+
             Attack();
+            
+
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -74,27 +74,24 @@ public class StickPickup : MonoBehaviour
                     fireBehavior.OnCoalCollected();
                 break;
 
-            case "Fire":
-                if (StickStash > 0)
-                    LightStick();
-                break;
+            
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
-            LightStick();
+        if (collision.gameObject.layer == 6) ;
+            
     }
 
     void Attack()
-    {
-        if (HasActiveStick) // if we have sticks
-        {
+    {       
             Debug.Log("Attacked with burning stick");
+        animator.SetTrigger("AttackTest");
 
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(position, attackRadius);
+            animator.SetBool("Attack", true);
             
             foreach (Collider2D hitCollider in  hitColliders)
             {
@@ -111,50 +108,51 @@ public class StickPickup : MonoBehaviour
                 }
             }
             
-        }
+              
 
         CanAttack = false;
     }
 
-    void LightStick()
-    {
-        Debug.Log($"Lit stick! Will burn for {burnTime} seconds");
-        IsOnFire = true;
-        StickStash--;
-        burnTimer.StartTimer(Time.time, burnTime);
-        Debug.Log($"Timer state: {burnTimer.State.ToString()}");
-    }
-    void HandleSticks()
-    {
-        // setting active stick bool for attack method
-        if (IsOnFire)
-        {
-            HasActiveStick = true;
-            animator.SetBool("HasActiveStick", true);
-        }
-        else
-        {
-            HasActiveStick = false;
-            animator.SetBool("HasActiveStick", false);
-        }
+    //void LightStick()
+    //{
+    //    Debug.Log($"Lit stick! Will burn for {burnTime} seconds");
+    //    IsOnFire = true;
+    //    StickStash--;
+    //    burnTimer.StartTimer(Time.time, burnTime);
+    //    Debug.Log($"Timer state: {burnTimer.State.ToString()}");
+    //}
+
+    //void HandleSticks()
+    //{
+    //    // setting active stick bool for attack method
+    //    if (IsOnFire)
+    //    {
+    //        HasActiveStick = true;
+    //        animator.SetBool("HasActiveStick", true);
+    //    }
+    //    else
+    //    {
+    //        HasActiveStick = false;
+    //        animator.SetBool("HasActiveStick", false);
+    //    }
         
-        // handling burn timer
-        burnTimer.UpdateTimer(Time.time);
-        switch (burnTimer.State)
-        {
-            case TimerState.Started:
-            case TimerState.Running:
-                IsOnFire = true;
-                break;
+    //    // handling burn timer
+    //    burnTimer.UpdateTimer(Time.time);
+    //    switch (burnTimer.State)
+    //    {
+    //        case TimerState.Started:
+    //        case TimerState.Running:
+    //            IsOnFire = true;
+    //            break;
 
-            case TimerState.Ended:
-                IsOnFire = false;
-                burnTimer.ResetTimer();
-                break;
-        }
+    //        case TimerState.Ended:
+    //            IsOnFire = false;
+    //            burnTimer.ResetTimer();
+    //            break;
+    //    }
 
 
-    }
+    //}
 
     /*
      * TD

@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
     public int numberOfEnemies = 10;
     public float spawnInterval = 2f; //Adjust as needed
 
+    public int Score = 0;
+
     [SerializeField] Transform fireReference;
 
     void Start()
@@ -22,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         StartCoroutine(SpawnEnemiesContinuously());
-        SpawnEnemies();
+        
     }
     IEnumerator SpawnEnemiesContinuously()
     {
@@ -35,6 +37,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnEnemies()
     {
+        numberOfEnemies = Random.Range(1, 4);
         for (int i = 0; i < numberOfEnemies; i++)
         {
             Vector3 randomPosition = GetRandomSpawnPosition();
@@ -42,9 +45,15 @@ public class EnemyManager : MonoBehaviour
             EnemyBehavior EB = spawnedEnemy.GetComponent<EnemyBehavior>(); 
             if (EB != null)
             {
+                EB.enemyManager = this;
                 EB.Fire = fireReference;
             }
         }
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        Score += amount;
     }
 
     Vector3 GetRandomSpawnPosition()

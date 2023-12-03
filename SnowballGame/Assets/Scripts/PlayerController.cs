@@ -29,10 +29,11 @@ public class PlayerController : MonoBehaviour
 
         // Move the player
         transform.Translate(movement);
+        Debug.Log($"Movement Vector: {movement}");
 
         //animations
-        animator.SetFloat("MoveX", horizontalInput);
-        animator.SetFloat("MoveY", verticalInput);
+        animator.SetFloat("MoveX", -movement.x);
+        //animator.SetFloat("MoveY", movement.y);
 
         // Optional: Flip the player sprite based on horizontal movement direction
         if (horizontalInput < 0)

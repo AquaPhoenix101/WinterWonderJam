@@ -28,6 +28,6 @@ public class ButtonBehavior : MonoBehaviour
 
     public void QuitGame()
     {
-        Environment.Exit(0);
+        Application.Quit();
     }
 }

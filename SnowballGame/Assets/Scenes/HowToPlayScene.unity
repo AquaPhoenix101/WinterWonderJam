@@ -349,16 +349,15 @@ MonoBehaviour:
     fire! Fend off the evil snowmen and protect your fire.
 
     Be sure to collect
-    coal to keep your fire burning and sticks to fend the snowmen off with. But be
-    sure to set your stick aflame for it to be affective.
+    coal to keep your fire burning.
 
 
     Movement: WASD
 
-    Attack:
-    [Space]
+    Attack: [Space]
 
-    Item Collection: Run into the item to collect it'
+    Coal
+    Collection: Just walk into it to add more time to your fire!'
 --- !u!222 &348809244
 CanvasRenderer:
   m_ObjectHideFlags: 0

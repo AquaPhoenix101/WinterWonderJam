@@ -45,6 +45,8 @@ public class Timer
     {
         CurrentTime = _currentTime;
         float remaingTime = EndTime - CurrentTime;
+        if (remaingTime <= 0)
+            remaingTime = 0;
         
         return MathF.Round(remaingTime);
     }

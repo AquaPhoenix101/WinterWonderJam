@@ -14,10 +14,13 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float deathSequenceTimeLength;
 
-    [SerializeField] GameObject StickDrop;
+    //[SerializeField] GameObject StickDrop;
     [SerializeField] GameObject CoalDrop;
     Vector2 itemThrowForce;
     public bool CanSpawnStick;
+    bool hasDroppedItem = false;
+
+    public EnemyManager enemyManager;
 
     // M E T H O D S
     private void Awake()
@@ -29,7 +32,7 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         targetPosition = new Vector2(Fire.position.x, Fire.position.y);
-        itemThrowForce = new Vector2 (5f, 5f);
+        itemThrowForce = new Vector2 (.5f, .5f);
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class EnemyBehavior : MonoBehaviour
         if (CanSpawnStick)
         {
             DropItem();
+            enemyManager.IncreaseScore(1);
             CanSpawnStick = false;
         }
             
@@ -81,11 +85,16 @@ public class EnemyBehavior : MonoBehaviour
 
     void DropItem()
     {
-        GameObject droppedStick = Instantiate(StickDrop, transform.position, Quaternion.identity);
-        droppedStick.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+        //GameObject droppedStick = Instantiate(StickDrop, transform.position, Quaternion.identity);
+        //droppedStick.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
 
-        GameObject droppedCoal = Instantiate(CoalDrop, transform.position, Quaternion.identity);
-        droppedCoal.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+        if(!hasDroppedItem)
+        {
+            GameObject droppedCoal = Instantiate(CoalDrop, transform.position, Quaternion.identity);
+            droppedCoal.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+            hasDroppedItem = true;
+        }
+
     }
 
     /* TD

@@ -8,9 +8,9 @@ public class UIUpdater : MonoBehaviour
     // P R O P E R T I E S
 
     [Header("UI References")]
-    [SerializeField] Text stickStashDisplay;
     [SerializeField] Text timerDisplay;
     [SerializeField] Image[] HealthDisplay;
+    [SerializeField] Text scoreDisplay;
 
     [Header("Image References")]
     [SerializeField] Sprite litHeart;
@@ -19,6 +19,7 @@ public class UIUpdater : MonoBehaviour
     [Header("GameObject References")]
     [SerializeField] FireBehavior fireBehavior;
     [SerializeField] StickPickup stickPickup;
+    [SerializeField] EnemyManager enemyManager;
 
     // M E T H O D S
     private void Awake()
@@ -34,9 +35,8 @@ public class UIUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stickStashDisplay.text = stickPickup.StickStash.ToString();
         timerDisplay.text = fireBehavior.timer.CheckTime(Time.time).ToString();
-
+        scoreDisplay.text = enemyManager.Score.ToString();
         HandleHealthDisplay();
     }
 
