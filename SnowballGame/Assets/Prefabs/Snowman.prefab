@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fire: {fileID: 0}
   HasDied: 0
-  speed: 0.01
+  speed: 0.5
   deathSequenceTimeLength: 5
   ItemDrop: {fileID: 1276097502084516748, guid: e30c7e84eb8d0fc4db6d9d4eb87976dc, type: 3}
   CanSpawnStick: 0
