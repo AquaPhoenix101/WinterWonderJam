@@ -14,6 +14,10 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float deathSequenceTimeLength;
 
+    [SerializeField] GameObject ItemDrop;
+    Vector2 itemThrowForce;
+    public bool CanSpawnStick;
+
     // M E T H O D S
     private void Awake()
     {
@@ -24,6 +28,7 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         targetPosition = new Vector2(Fire.position.x, Fire.position.y);
+        itemThrowForce = new Vector2 (5f, 5f);
     }
 
     // Update is called once per frame
@@ -35,7 +40,8 @@ public class EnemyBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveEnemy();
+        if (!HasDied)
+            MoveEnemy();
     }
     void MoveEnemy()
     {
@@ -61,14 +67,26 @@ public class EnemyBehavior : MonoBehaviour
     {
         rb2D.velocity = Vector2.zero;
         animator.SetBool("HasDied", true);
+        if (CanSpawnStick)
+        {
+            DropItem();
+            CanSpawnStick = false;
+        }
+            
         yield return new WaitForSeconds(deathSequenceTimeLength);
         Destroy(this.gameObject);
 
     }
 
+    void DropItem()
+    {
+        GameObject droppedItem = Instantiate(ItemDrop, transform.position, Quaternion.identity);
+        droppedItem.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+    }
+
     /* TD
-     * stick drop -> dependent on if died by player or not
-     * snowman health and damage from player
+     * stick drop -> dependent on if died by player or not [DONE]
+     * snowman health and damage from player [DONE]
      * 
      * death method [DONE]
      * 

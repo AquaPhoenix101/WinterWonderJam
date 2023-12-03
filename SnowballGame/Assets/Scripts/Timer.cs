@@ -1,7 +1,7 @@
 // Instantiate to use
 using System;
 
-public enum TimerState { Started, Running, Ended }
+public enum TimerState { Off, Started, Running, Ended }
 public class Timer
 {
     // P R O P E R T I E S
@@ -38,7 +38,7 @@ public class Timer
     public void ResetTimer()
     {
 
-        State = TimerState.Ended;
+        State = TimerState.Off;
     }
 
     public float CheckTime(float _currentTime)
