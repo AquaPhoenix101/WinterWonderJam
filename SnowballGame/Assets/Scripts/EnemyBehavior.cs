@@ -14,7 +14,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float deathSequenceTimeLength;
 
-    [SerializeField] GameObject ItemDrop;
+    [SerializeField] GameObject StickDrop;
+    [SerializeField] GameObject CoalDrop;
     Vector2 itemThrowForce;
     public bool CanSpawnStick;
 
@@ -80,8 +81,11 @@ public class EnemyBehavior : MonoBehaviour
 
     void DropItem()
     {
-        GameObject droppedItem = Instantiate(ItemDrop, transform.position, Quaternion.identity);
-        droppedItem.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+        GameObject droppedStick = Instantiate(StickDrop, transform.position, Quaternion.identity);
+        droppedStick.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
+
+        GameObject droppedCoal = Instantiate(CoalDrop, transform.position, Quaternion.identity);
+        droppedCoal.GetComponent<Rigidbody2D>().AddForce(itemThrowForce, ForceMode2D.Impulse);
     }
 
     /* TD

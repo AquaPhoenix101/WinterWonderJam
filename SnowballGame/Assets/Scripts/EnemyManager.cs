@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public float spawnRadius = 10f;
     public float randomness = 2f;
     public int numberOfEnemies = 10;
+    public float spawnInterval = 2f; //Adjust as needed
 
     [SerializeField] Transform fireReference;
 
@@ -20,7 +21,16 @@ public class EnemyManager : MonoBehaviour
             return;
         }
 
+        StartCoroutine(SpawnEnemiesContinuously());
         SpawnEnemies();
+    }
+    IEnumerator SpawnEnemiesContinuously()
+    {
+        while (true)
+        {
+            SpawnEnemies();
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
 
     void SpawnEnemies()

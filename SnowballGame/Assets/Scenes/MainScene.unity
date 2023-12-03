@@ -1079,7 +1079,7 @@ MonoBehaviour:
   attackRadius: 5
   burnTime: 30
   IsOnFire: 0
-  HasActiveStick: 0
+  HasActiveStick: 1
   Fire: {fileID: 1263857838}
 --- !u!61 &1041195591
 BoxCollider2D:
@@ -1559,7 +1559,8 @@ MonoBehaviour:
   spawnRadius: 10
   randomness: 2
   numberOfEnemies: 4
-  fireReference: {fileID: 0}
+  spawnInterval: 2
+  fireReference: {fileID: 1263857839}
 --- !u!4 &1473975243
 Transform:
   m_ObjectHideFlags: 0
