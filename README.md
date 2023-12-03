@@ -30,5 +30,6 @@
 - Added Start, How to Play, and Game Over screens with functioning buttons
 - Implemented scene change and end game behavior (when the fire loses all health or timer ends, the game over screen is shown)
 
-### 3 December 2023 | 13:45
-- Fixed issue where the spawned in snowmen weren't getting a reference to the fire
+### 3 December 2023 | 13:00
+- Created enemy manager - running into issues with Snowman prefab not being able to find fire
+- Working on design elements (enemy speed, amount, spawn rate, player speed, etc.)
