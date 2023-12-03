@@ -20,7 +20,7 @@
 - fix player animator controller (doesn't quite work right yet)
 - player attacking functionality
 - enemy manager for spawning in enemies [DONE]
-- item manager for spawning in coal
+- item manager for spawning in coal [DONE]
 - start screen (buttons and instructions) [DONE]
 - end of game scene (game over screen and button to restart) [DONE]
   
