@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stick
   - Powerup
+  - Coal
   layers:
   - Default
   - TransparentFX

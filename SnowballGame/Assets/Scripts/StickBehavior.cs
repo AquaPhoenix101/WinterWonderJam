@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickBehavior : MonoBehaviour
+public class StickBehavior : MonoBehaviour //and coal behavior
 {
     // P R O P E R T I E S
 
-    // break time
-    float burnTime = 30; // in seconds
-    // stick state
-    public bool IsOnFire = false;
+    
 
     // M E T H O D S
     // Start is called before the first frame update
@@ -24,8 +21,13 @@ public class StickBehavior : MonoBehaviour
         
     }
 
-    public void StickDestruction()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+            SelfDestruct();
+    }
+    void SelfDestruct()
+    {
+        Destroy(this.gameObject);
     }
 }

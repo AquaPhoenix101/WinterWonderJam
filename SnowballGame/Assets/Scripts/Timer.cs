@@ -1,4 +1,6 @@
 // Instantiate to use
+using System;
+
 public enum TimerState { Started, Running, Ended }
 public class Timer
 {
@@ -37,6 +39,14 @@ public class Timer
     {
 
         State = TimerState.Ended;
+    }
+
+    public float CheckTime(float _currentTime)
+    {
+        CurrentTime = _currentTime;
+        float remaingTime = EndTime - CurrentTime;
+        
+        return MathF.Round(remaingTime);
     }
 
     private float SecondsToMilliseconds(float seconds)
