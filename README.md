@@ -28,3 +28,4 @@
 
 ### 3 December 2023 | 11:00
 - Added Start, How to Play, and Game Over screens with functioning buttons
+- Implemented scene change and end game behavior (when the fire loses all health or timer ends, the game over screen is shown)

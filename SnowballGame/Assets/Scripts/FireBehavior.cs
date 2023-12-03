@@ -10,6 +10,9 @@ public class FireBehavior : MonoBehaviour
     public Timer timer;
     [SerializeField] float timeLenght = 60;
 
+    [Header("References")]
+    [SerializeField] GameManager gameManager;
+
     // M E T H O D S
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class FireBehavior : MonoBehaviour
     void Update()
     {
         HandleTimer();
+        CheckHealth();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,15 +42,9 @@ public class FireBehavior : MonoBehaviour
             }
         }
 
-        // if collision is player nad player has coal
-            //reset timer
+        
     }
 
-    public void OnCoalCollected() // to be called when the player picks up coal
-    {
-        timer.ResetTimer();
-        timer.StartTimer(Time.time, timeLenght);
-    }
 
     void HandleTimer()
     {
@@ -60,10 +58,24 @@ public class FireBehavior : MonoBehaviour
             case TimerState.Ended:
                 // end game
                 Debug.Log("The fire has burned out, you lose");
+                gameManager.EndGame();
                 break;
         }
     }
-    
+
+    void CheckHealth()
+    {
+        if (Health <= 0)
+            gameManager.EndGame();
+    }
+
+
+    public void OnCoalCollected() // to be called when the player picks up coal
+    {
+        timer.ResetTimer();
+        timer.StartTimer(Time.time, timeLenght);
+    }
+
     /* TD
      * react loss health
      * react to timer end
