@@ -13,11 +13,14 @@
 ### 2 December 2023 | 18:30
 - Implemented killing snowmen
 - Implemented snowmen dropping sticks
+- Created prefabs on gameObjects that will be instantiated
 
 #### Thing to be Done
 - finish setting up player animation clips (need: idle anim, left walk anim, right walk anim, left walk anim with stick, right walk anim with stick)
+- fix player animator controller (doesn't quite work right yet)
 - enemy manager for spawning in enemies
 - item manager for spawning in coal
 - start screen (buttons and instructions)
 - end of game scene (game over screen and button to restart)
-- implement power ups
+  
+- implement power ups [Will be saved for later]
